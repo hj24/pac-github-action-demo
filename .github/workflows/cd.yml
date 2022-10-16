@@ -1,0 +1,44 @@
+name: PAC & Github actions CD demo
+run-name: ${{ github.actor }} is running cd workflow 
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: pull code
+      uses: actions/checkout@v3
+    - name: setup nodejs
+      uses: actions/setup-node@v3
+      with:
+        node-version: '12.x'
+    - name: prepare npm install
+      run: npm ci
+    - name: npm build
+      run: npm run build --if-present
+    - name: npm test
+      run: npm test
+    #- name: setup msbuild
+    #  uses: microsoft/setup-msbuild@v1.1
+    #- name: msbuild
+    #  run: msbuild
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: '6.0.x'
+    - name: Install dependencies
+      run: dotnet restore
+    - name: dotnet build
+      run: dotnet build
+      working-directory: .\Solutions
+    - name: publish
+      uses: microsoft/powerplatform-actions/import-solution@v0
+      working-directory: .\Solutions
+      with:
+        environment-url: ${{ secrets.URL }}
+        user-name:  ${{ secrets.USERNAME }}
+        password-secret: ${{ secrets.PASSWORD }}
+        olution-file: '.\bin\Debug\Solutions.zip'
+  
