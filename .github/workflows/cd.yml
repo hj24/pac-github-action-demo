@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is running cd workflow
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   deploy:
     defaults:
