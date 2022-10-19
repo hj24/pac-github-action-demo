@@ -40,5 +40,5 @@ jobs:
         environment-url: ${{ secrets.URL }}
         user-name:  ${{ secrets.USERNAME }}
         password-secret: ${{ secrets.PASSWORD }}
-        olution-file: '.\bin\Debug\Solutions.zip'
+        solution-file: '.\bin\Debug\Solutions.zip'
   
