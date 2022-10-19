@@ -1,11 +1,17 @@
 name: PAC & Github actions CD demo
 run-name: ${{ github.actor }} is running cd workflow 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - master
+  push:
+    branched:
+      - master
 jobs:
-  build:
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: windows-latest
     steps:
     - name: pull code
