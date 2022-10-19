@@ -5,7 +5,11 @@ on:
     branches:
       - master
 jobs:
-  build:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    defaults:
+      run:
+        working-directory: .\Solutions
     runs-on: windows-latest
     steps:
     - name: pull code
@@ -14,12 +18,12 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '12.x'
-    - name: prepare npm install
-      run: npm ci
-    - name: npm build
-      run: npm run build --if-present
-    - name: npm test
-      run: npm test
+    - name: npm install
+      run: |
+        cd ..\
+        npm ci
+        npm run build --if-present
+        npm test
     #- name: setup msbuild
     #  uses: microsoft/setup-msbuild@v1.1
     #- name: msbuild
@@ -32,10 +36,8 @@ jobs:
       run: dotnet restore
     - name: dotnet build
       run: dotnet build
-      working-directory: .\Solutions
     - name: publish
       uses: microsoft/powerplatform-actions/import-solution@v0
-      working-directory: .\Solutions
       with:
         environment-url: ${{ secrets.URL }}
         user-name:  ${{ secrets.USERNAME }}
