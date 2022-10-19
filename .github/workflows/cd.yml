@@ -1,8 +1,13 @@
 name: PAC & Github actions CD demo
 run-name: ${{ github.actor }} is running cd workflow 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
+      - master
+  push:
+    branched:
       - master
 jobs:
   if_merged:
