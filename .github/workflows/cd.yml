@@ -45,4 +45,4 @@ jobs:
         environment-url: ${{ secrets.URL }}
         user-name:  ${{ secrets.USERNAME }}
         password-secret: ${{ secrets.PASSWORD }}
-        solution-file: 'bin\Debug\Solutions.zip'
+        solution-file: 'Solutions\bin\Debug\Solutions.zip'
