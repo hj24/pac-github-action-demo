@@ -16,10 +16,12 @@ jobs:
     - name: setup nodejs
       uses: actions/setup-node@v3
       with:
-        node-version: '12.x'
+        node-version: '18.x'
     - name: npm install
       run: |
         cd ..\
+        echo $pwd
+        node -v
         npm ci
         npm run build --if-present
         npm test
