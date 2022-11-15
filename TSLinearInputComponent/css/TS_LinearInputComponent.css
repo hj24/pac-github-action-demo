@@ -10,7 +10,7 @@
     outline: none;
  }
  .SampleNamespace\.TSLinearInputComponent input[type=range].linearslider::-webkit-slider-runnable-track {   
-    background: #22f245;
+    background: #f12bab;
     height:2px;
     cursor:pointer
  }   
