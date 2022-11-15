@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="SampleNamespace" constructor="TSLinearInputComponent" version="1.0.6" display-name-key="Linear Input Component" description-key="Allows you to enter the numeric values using the visual slider." control-type="standard">
+  <control namespace="SampleNamespace" constructor="TSLinearInputComponent" version="1.0.7" display-name-key="Linear Input Component" description-key="Allows you to enter the numeric values using the visual slider." control-type="standard">
     <type-group name="numbers">
       <type>Whole.None</type>
       <type>Currency</type>
